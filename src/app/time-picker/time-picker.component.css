@@ -1,0 +1,55 @@
+.time-box {
+  margin: auto;
+}
+
+.picker {
+  padding: 5px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+
+#clock-btn {
+  position: relative;
+  z-index: 1;
+  left: -25px;
+  top: 1px;
+  color: #176dd1;
+  cursor: pointer;
+  width: 0;
+}
+
+.time-box {
+  width: 145px;
+}
+
+.time-board {
+  margin-left: -100px;
+  position: relative;
+  width: 350px;
+  height: 35px;
+  bottom: 5px;
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
+  background-color: #ffffff;
+  box-shadow: 0 8px 18px 0 rgba(0, 0, 0, 0.04);
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr 300px 1fr;
+  justify-items: center;
+  align-content: center;
+}
+
+.times {
+  display: grid;
+  grid-template-columns: repeat(4, 68px);
+  grid-column-gap: 8px;
+  justify-items: center;
+}
+
+.time {
+  border-radius: 2px;
+  background-color: #ffffff;
+  border: solid 0.5px #707070;
+  padding: 3px;
+}

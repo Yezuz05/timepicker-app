@@ -1,0 +1,13 @@
+<div class="time-box">
+  <div class="picker-box">
+    <input type="text" disabled class="picker" [(ngModel)]="chosenTime">
+    <i id="clock-btn" (click)="toggleBoard()" class="fa fa-clock-o"></i>
+  </div>
+  <div *ngIf="timeBoard" class="time-board">
+    <i class="fa fa-angle-left"></i>
+    <div class="times">
+      <div class="time" (click)="setTime(num)" *ngFor="let num of times()">{{display(num)}}</div>
+    </div>
+    <i class="fa fa-angle-right"></i>
+  </div>
+</div>
