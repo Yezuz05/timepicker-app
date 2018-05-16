@@ -1,13 +1,19 @@
 <div class="time-box">
   <div class="picker-box">
-    <input type="text" disabled class="picker" [(ngModel)]="chosenTime">
-    <i id="clock-btn" (click)="toggleBoard()" class="fa fa-clock-o"></i>
+    <div type="text" (click)="toggleBoard()" class="picker">
+      {{chosenTime}}
+      <i id="clock" class="fa fa-clock-o"></i>
+    </div>
   </div>
   <div *ngIf="timeBoard" class="time-board">
-    <i class="fa fa-angle-left"></i>
+    <button (click)="moveLeft()" class="scroll"><i class="fa fa-angle-left fa-2x"></i></button>
     <div class="times">
-      <div class="time" (click)="setTime(num)" *ngFor="let num of times()">{{display(num)}}</div>
+      <!--<div class="time" [class.right]="right" [class.stop]="stop" [class.left]="left" (click)="setTime(num)" *ngFor="let num of times()" [class]="">{{display(num)}}</div>-->
+      <div class="time">{{display(time1)}}</div>
+      <div class="time">{{display(time2)}}</div>
+      <div class="time">{{display(time3)}}</div>
+      <div class="time">{{display(time4)}}</div>
     </div>
-    <i class="fa fa-angle-right"></i>
+    <button (click)="moveRight()" (click)="setTime(num)" class="scroll"><i class="fa fa-angle-right fa-2x"></i></button>
   </div>
 </div>

@@ -5,17 +5,16 @@
 .picker {
   padding: 5px;
   height: 20px;
+  cursor: pointer;
   border-radius: 4px;
+  border: solid black 1px;
+  width: 90px;
 }
 
 
-#clock-btn {
-  position: relative;
-  z-index: 1;
-  left: -25px;
+#clock {
   top: 1px;
   color: #176dd1;
-  cursor: pointer;
   width: 0;
 }
 
@@ -32,7 +31,7 @@
   -webkit-backdrop-filter: blur(50px);
   backdrop-filter: blur(50px);
   background-color: #ffffff;
-  box-shadow: 0 8px 18px 0 rgba(0, 0, 0, 0.04);
+  box-shadow: 4px 8px 18px 2px rgba(0, 0, 0, 0.07);
   z-index: 10;
   display: grid;
   grid-template-columns: 1fr 300px 1fr;
@@ -42,9 +41,11 @@
 
 .times {
   display: grid;
-  grid-template-columns: repeat(4, 68px);
+  max-width: 295px;
+  grid-template-columns: repeat(24, 68px);
   grid-column-gap: 8px;
   justify-items: center;
+  overflow: hidden;
 }
 
 .time {
@@ -52,4 +53,41 @@
   background-color: #ffffff;
   border: solid 0.5px #707070;
   padding: 3px;
+  cursor: pointer;
+}
+
+.scroll {
+  background-color: white;
+  border-color: white;
+}
+
+.scroll:focus {
+  outline: none;
+}
+
+
+@keyframes right {
+  100% {
+    transform: translateX(-300px);
+  }
+}
+
+@keyframes left {
+  100% {
+    transform: translateX(150px);
+  }
+}
+
+.right {
+  /*animation-name: right;*/
+  /*animation-duration: 1s;*/
+  animation: right 2s forwards;
+}
+
+.left {
+  animation: left 2s forwards;
+}
+
+.stop {
+  transform: none !important;
 }

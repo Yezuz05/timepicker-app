@@ -1,15 +1,44 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 
 import * as moment from 'moment';
 
 @Component({
   selector: 'app-time-picker',
   templateUrl: './time-picker.component.html',
-  styleUrls: ['./time-picker.component.css']
+  styleUrls: ['./time-picker.component.css'],
+  animations: [
+    trigger('move', [
+      state('right', style({
+        transform: 'translateX(-300px)'
+      })),
+      state('left', style({
+        transform: 'translateX(50px)'
+      })),
+      transition('* => right', animate('1s')),
+      transition('right => left', animate('1s')),
+      transition('active => inactive', animate('1s'))
+    ])
+  ]
 })
 export class TimePickerComponent implements OnInit {
   chosenTime = moment().format('h:00 a');
   timeBoard = false;
+  right = false;
+  left = false;
+  stop = false;
+  timest = '';
+  time1 = 0;
+  time2 = 1;
+  time3 = 2;
+  time4 = 3;
+  currentSlide = 1;
 
   constructor() { }
 
@@ -33,5 +62,27 @@ export class TimePickerComponent implements OnInit {
   setTime(num) {
     this.chosenTime = moment().hour(num).format('h:00 a');
     this.timeBoard = !this.timeBoard;
+  }
+  moveRight() {
+    // if (this.currentSlide === 6) { return; }
+    // if (this.currentSlide === 1) { this.right = true; }
+    // this.stop = false;
+    // this.left = false;
+    // setTimeout(() => { this.stop = true; this.currentSlide++; }, 2000);
+    this.time1++;
+    this.time2++;
+    this.time3++;
+    this.time4++;
+  }
+  moveLeft() {
+    // if (this.currentSlide === 0) { return; }
+    // this.stop = false;
+    // this.right = false;
+    // this.left = true;
+    // setTimeout(() => { this.stop = true; this.currentSlide--; }, 2000);
+    this.time1--;
+    this.time2--;
+    this.time3--;
+    this.time4--;
   }
 }
