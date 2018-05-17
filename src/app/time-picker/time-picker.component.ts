@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
+import { Component, OnInit, EventEmitter, Input, Output  } from '@angular/core';
+// import {
+//   trigger,
+//   state,
+//   style,
+//   animate,
+//   transition
+// } from '@angular/animations';
 
 import * as moment from 'moment';
 
@@ -13,22 +13,24 @@ import * as moment from 'moment';
   selector: 'app-time-picker',
   templateUrl: './time-picker.component.html',
   styleUrls: ['./time-picker.component.css'],
-  animations: [
-    trigger('move', [
-      state('right', style({
-        transform: 'translateX(-300px)'
-      })),
-      state('left', style({
-        transform: 'translateX(50px)'
-      })),
-      transition('* => right', animate('1s')),
-      transition('right => left', animate('1s')),
-      transition('active => inactive', animate('1s'))
-    ])
-  ]
+  // animations: [
+  //   trigger('move', [
+  //     state('right', style({
+  //       transform: 'translateX(-300px)'
+  //     })),
+  //     state('left', style({
+  //       transform: 'translateX(50px)'
+  //     })),
+  //     transition('* => right', animate('1s')),
+  //     transition('right => left', animate('1s')),
+  //     transition('active => inactive', animate('1s'))
+  //   ])
+  // ]
 })
 export class TimePickerComponent implements OnInit {
-  chosenTime = moment().format('h:00 a');
+  @Input() time;
+  @Output() timeChanged = new EventEmitter();
+  chosenTime;
   timeBoard = false;
   right = false;
   left = false;
@@ -43,7 +45,13 @@ export class TimePickerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(parseInt(this.chosenTime, 10));
+    if (this.time && moment(this.time).isValid()) {
+      this.chosenTime = moment().hour(this.time).format('h:00 a');
+    } else {
+      this.chosenTime = moment().format('h:00 a');
+      this.timeChanged.emit(parseInt(this.chosenTime, 10));
+      throw new Error('Invalid time passed :( . \n Current hour is used :)');
+    }
   }
 
   toggleBoard() {
@@ -61,6 +69,8 @@ export class TimePickerComponent implements OnInit {
   }
   setTime(num) {
     this.chosenTime = moment().hour(num).format('h:00 a');
+    console.log(parseInt(this.chosenTime, 10));
+    this.timeChanged.emit(parseInt(this.chosenTime, 10));
     this.timeBoard = !this.timeBoard;
   }
   moveRight() {
@@ -69,6 +79,7 @@ export class TimePickerComponent implements OnInit {
     // this.stop = false;
     // this.left = false;
     // setTimeout(() => { this.stop = true; this.currentSlide++; }, 2000);
+    if (this.time4 === 23) { return; }
     this.time1++;
     this.time2++;
     this.time3++;
@@ -80,6 +91,7 @@ export class TimePickerComponent implements OnInit {
     // this.right = false;
     // this.left = true;
     // setTimeout(() => { this.stop = true; this.currentSlide--; }, 2000);
+    if (this.time1 === 0) { return; }
     this.time1--;
     this.time2--;
     this.time3--;

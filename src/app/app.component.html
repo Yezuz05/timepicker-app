@@ -3,4 +3,4 @@
     Welcome to {{ title }}!
   </h1>
 </div>
-<app-time-picker></app-time-picker>
+<app-time-picker [time]="time" (timeChanged)="setTime($event)"></app-time-picker>
