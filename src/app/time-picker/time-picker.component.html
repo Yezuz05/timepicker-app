@@ -9,10 +9,6 @@
     <button (click)="moveLeft()" class="scroll"><i class="fa fa-angle-left fa-2x"></i></button>
     <div class="times">
       <!--<div class="time" [class.right]="right" [class.stop]="stop" [class.left]="left" (click)="setTime(num)" *ngFor="let num of times()" [class]="">{{display(num)}}</div>-->
-      <div class="time" (click)="setTime(time1)">{{display(time1)}}</div>
-      <div class="time" (click)="setTime(time2)">{{display(time2)}}</div>
-      <div class="time" (click)="setTime(time3)">{{display(time3)}}</div>
-      <div class="time" (click)="setTime(time4)">{{display(time4)}}</div>
     </div>
     <button (click)="moveRight()" class="scroll"><i class="fa fa-angle-right fa-2x"></i></button>
   </div>

@@ -32,19 +32,13 @@ export class TimePickerComponent implements OnInit {
   @Output() timeChanged = new EventEmitter();
   chosenTime;
   timeBoard = false;
-  right = false;
-  left = false;
-  stop = false;
   timest = '';
-  time1 = 0;
-  time2 = 1;
-  time3 = 2;
-  time4 = 3;
   currentSlide = 1;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(moment().hours());
     if (this.time && moment(this.time).isValid()) {
       this.chosenTime = moment().hour(this.time).format('h:00 a');
     } else {
@@ -57,13 +51,7 @@ export class TimePickerComponent implements OnInit {
   toggleBoard() {
     this.timeBoard = !this.timeBoard;
   }
-  times() {
-    let _times = [];
-   for(let i = 0; i <= 23; i++) {
-     _times.push(i);
-   }
-   return _times;
-  }
+
   display(num) {
     return moment().hour(num).format('h:00 a');
   }
@@ -79,11 +67,6 @@ export class TimePickerComponent implements OnInit {
     // this.stop = false;
     // this.left = false;
     // setTimeout(() => { this.stop = true; this.currentSlide++; }, 2000);
-    if (this.time4 === 23) { return; }
-    this.time1++;
-    this.time2++;
-    this.time3++;
-    this.time4++;
   }
   moveLeft() {
     // if (this.currentSlide === 0) { return; }
@@ -91,10 +74,5 @@ export class TimePickerComponent implements OnInit {
     // this.right = false;
     // this.left = true;
     // setTimeout(() => { this.stop = true; this.currentSlide--; }, 2000);
-    if (this.time1 === 0) { return; }
-    this.time1--;
-    this.time2--;
-    this.time3--;
-    this.time4--;
   }
 }
